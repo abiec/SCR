@@ -9,57 +9,58 @@
         <title>Principal</title>
     </h:head>
     <h:body>
-        <ui:composition template="./WEB-INF/Plantilla.xhtml">
-            <ui:define name="content">
-            <h:form rendered="#{usuarioBean.verificarSesion()}">
-                <p:growl id="growl" showDetail="true" sticky="true" />  
-                <h:panelGrid columns="2">
 
-                    <p:outputLabel value="Bienvenido Usuario" />
-                    <p:outputLabel value="#{usuarioBean.usuario.usuarioNombre}" />
+                <ui:composition template="./WEB-INF/Plantilla.xhtml">
+                    <ui:define name="content">
+                        <h:form rendered="#{usuarioBean.verificarSesion()}">
+                            <p:growl id="growl" showDetail="true" sticky="true" />  
+                            <h:panelGrid columns="2">
 
-                    <p:commandButton value="Cerrar Sesión"
-                                     action="#{usuarioBean.cerrarSesion()}" />
-                </h:panelGrid>
-                <br/>
-                <h:form>
-                    <!-- Elegimos el valor a guardar cuando se seleccione!-->
-                    <p:selectOneMenu id="base" value="#{baseBean.base.baseId}" >
+                                <p:outputLabel value="Bienvenido Usuario" />
+                                <p:outputLabel value="#{usuarioBean.usuario.usuarioNombre}" />
 
-                        <f:selectItem itemLabel="Elige tu base" itemValue="" />
-                        <f:selectItems value="#{baseBean.listaNombreBases()}" />
-                        <!--  <f:ajax execute="base" render="baseSelecc"/> -->
-                    </p:selectOneMenu>
-                   <!-- <p:outputLabel value="#{baseBean.base.baseId}" id="baseSelecc"/> -->
-                    <h:panelGrid columns="3">			
+                                <p:commandButton value="Cerrar Sesión"
+                                                 action="#{usuarioBean.cerrarSesion()}" />
+                            </h:panelGrid>
+                            <br/>
+                            <h:form>
+                                <!-- Elegimos el valor a guardar cuando se seleccione!-->
+                                <p:selectOneMenu id="base" value="#{baseBean.base.baseId}" >
 
-                        <p:outputLabel for="cal" value="Fecha Inicio" />
-                        <p:calendar id="cal" value="#{proyectoExpressBean.proyectoExpress.proyectofechaInicio}" showOn="button" />
-                        <p:watermark for="cal" value="Fecha de solicitud" />
+                                    <f:selectItem itemLabel="Elige tu base" itemValue="" />
+                                    <f:selectItems value="#{baseBean.listaNombreBases()}" />
+                                    <!--  <f:ajax execute="base" render="baseSelecc"/> -->
+                                </p:selectOneMenu>
+                               <!-- <p:outputLabel value="#{baseBean.base.baseId}" id="baseSelecc"/> -->
+                                <h:panelGrid columns="3">			
 
-                        <p:outputLabel value="Solicitante" />
-                        <p:inputText id="sol"  value="#{proyectoExpressBean.proyectoExpress.proyectoSolicitante}" />
-                        <p:watermark for="sol" value="Nombre de quien solicita" />
+                                    <p:outputLabel for="cal" value="Fecha Inicio" />
+                                    <p:calendar id="cal" value="#{proyectoExpressBean.proyectoExpress.proyectofechaInicio}" showOn="button" />
+                                    <p:watermark for="cal" value="Fecha de solicitud" />
 
-                        <p:outputLabel value="Empresa" />
-                        <p:inputText id="emp" value="#{proyectoExpressBean.proyectoExpress.proyectoEmpresa}" />
-                        <p:watermark for="emp" value="Empresa a la que pertenece" />
+                                    <p:outputLabel value="Solicitante" />
+                                    <p:inputText id="sol"  value="#{proyectoExpressBean.proyectoExpress.proyectoSolicitante}" />
+                                    <p:watermark for="sol" value="Nombre de quien solicita" />
 
-                        <p:outputLabel value="Descripción" />
-                        <p:inputTextarea id="des" rows="10" cols="50" value="#{proyectoExpressBean.proyectoExpress.proyectoDescripcion}"/>
-                        <p:watermark for="des" value="Descripción de la actividad a realizar" />
+                                    <p:outputLabel value="Empresa" />
+                                    <p:inputText id="emp" value="#{proyectoExpressBean.proyectoExpress.proyectoEmpresa}" />
+                                    <p:watermark for="emp" value="Empresa a la que pertenece" />
 
-                        <p:growl id="growl" life="2000" />
+                                    <p:outputLabel value="Descripción" />
+                                    <p:inputTextarea id="des" rows="10" cols="50" value="#{proyectoExpressBean.proyectoExpress.proyectoDescripcion}"/>
+                                    <p:watermark for="des" value="Descripción de la actividad a realizar" />
 
-                        <p:commandButton value="Agregar" id="ajax" update="growl" actionListener="#{proyectoExpressBean.guardarProyecto(baseBean.base.baseId,usuarioBean.usuario.usuarioId)}" styleClass="ui-priority-primary" />
-                        <p:commandButton action="menu" value="Regresar" />
+                                    <p:growl id="growl" life="2000" />
 
-                    </h:panelGrid>
-                </h:form>
-                <!-- Manejamos ajax para refrescar, cuando se ejecute base, se renderizará base Selecc!-->
-            </h:form>
-                </ui:define>
-        </ui:composition>
-    </h:body>
-</html>
+                                    <p:commandButton value="Agregar" id="ajax" update="growl" actionListener="#{proyectoExpressBean.guardarProyecto(baseBean.base.baseId,usuarioBean.usuario.usuarioId)}" styleClass="ui-priority-primary" />
+                                    <p:commandButton action="menu" value="Regresar" />
+
+                                </h:panelGrid>
+                            </h:form>
+                            <!-- Manejamos ajax para refrescar, cuando se ejecute base, se renderizará base Selecc!-->
+                        </h:form>
+                    </ui:define>
+                </ui:composition>
+                </h:body>
+                </html>
 

@@ -3,86 +3,92 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <p:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{usuarioBean.verificarSesion() eq false}" />
-        <h:form rendered="#{usuarioBean.verificarSesion()}">
-            <h:panelGrid columns="2">
+        <ui:composition template="./WEB-INF/Plantilla.xhtml">
+            <ui:define name="content">
 
-                <p:outputLabel value="Bienvenido Usuario" />
-                <p:outputLabel value="#{usuarioBean.usuario.usuarioNombre}" />
+                <p:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{usuarioBean.verificarSesion() eq false}" />
+                <h:form rendered="#{usuarioBean.verificarSesion()}">
+                    <h:panelGrid columns="2">
 
-                <p:commandButton value="Cerrar Sesión"
-                                 action="#{usuarioBean.cerrarSesion()}" />
-            </h:panelGrid>
+                        <p:outputLabel value="Bienvenido Usuario" />
+                        <p:outputLabel value="#{usuarioBean.usuario.usuarioNombre}" />
+
+                        <p:commandButton value="Cerrar Sesión"
+                                         action="#{usuarioBean.cerrarSesion()}" />
+                    </h:panelGrid>
 
 
-            <p:selectOneMenu id="base" value="#{baseBean.base.baseId}" >
+                    <p:selectOneMenu id="base" value="#{baseBean.base.baseId}" >
 
-                <f:selectItem itemLabel="Elige tu base" itemValue="" />
-                <f:selectItems value="#{baseBean.listaNombreBases()}" />
-                <!--  <f:ajax execute="base" render="baseSelecc"/> -->
-            </p:selectOneMenu>
-            <p:dataTable value="#{proyectoExpressBean.lista}" var="pes">
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="ID" />
-                    </f:facet>
-                    <p:outputLabel value="#{pes.proyectoId}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="Empresa" />
-                    </f:facet>
-                    <p:outputLabel value="#{pes.proyectoEmpresa}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="Solicita" />
-                    </f:facet>
-                    <p:outputLabel value="#{pes.proyectoSolicitante}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="Inicio" />
-                    </f:facet>
-                    <p:outputLabel value="#{pes.proyectofechaInicio}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="Personal SCR" />
-                    </f:facet>
-                    <p:outputLabel value="#{pes.usuariousuarioid.usuarioNombre}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="Descripción" />
-                    </f:facet>
-                    <p:commandLink actionListener="#{proyectoExpressBean.mostrarDetalles(pes.proyectoDescripcion)}"
-                                   value="Ver descripción"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="Reporte" />
-                    </f:facet>
-                    <p:commandLink action="#{empleadoBean.leer(emp)}"
-                                   value="Ver reporte" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <p:outputLabel value="Bitácora" />
-                    </f:facet>
-                    <p:commandLink action="Bitacora"
-                                   value="Agregar bitácora" />
-                </p:column>
-            </p:dataTable>
+                        <f:selectItem itemLabel="Elige tu base" itemValue="" />
+                        <f:selectItems value="#{baseBean.listaNombreBases()}" />
+                        <!--  <f:ajax execute="base" render="baseSelecc"/> -->
+                    </p:selectOneMenu>
+                    <p:dataTable value="#{proyectoExpressBean.lista}" var="pes">
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="ID" />
+                            </f:facet>
+                            <p:outputLabel value="#{pes.proyectoId}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="Empresa" />
+                            </f:facet>
+                            <p:outputLabel value="#{pes.proyectoEmpresa}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="Solicita" />
+                            </f:facet>
+                            <p:outputLabel value="#{pes.proyectoSolicitante}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="Inicio" />
+                            </f:facet>
+                            <p:outputLabel value="#{pes.proyectofechaInicio}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="Personal SCR" />
+                            </f:facet>
+                            <p:outputLabel value="#{pes.usuariousuarioid.usuarioNombre}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="Descripción" />
+                            </f:facet>
+                            <p:commandLink actionListener="#{proyectoExpressBean.mostrarDetalles(pes.proyectoDescripcion)}"
+                                           value="Ver descripción"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="Reporte" />
+                            </f:facet>
+                            <p:commandLink action="#{empleadoBean.leer(emp)}"
+                                           value="Ver reporte" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <p:outputLabel value="Bitácora" />
+                            </f:facet>
+                            <p:commandLink action="Bitacora"
+                                           value="Agregar bitácora" />
+                        </p:column>
+                    </p:dataTable>
 
-            <p:commandButton action="menu" value="Regresar" />
+                    <p:commandButton action="menu" value="Regresar" />
 
-        </h:form>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
